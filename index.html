@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Demonstração — Assistente Virtual | Prefeitura de Restinga/SP</title>
+<style>
+  :root {
+    --azul: #1B4B91;
+    --azul-escuro: #123663;
+    --azul-claro: #EAF1FB;
+    --texto: #1c2430;
+    --cinza: #5b6675;
+    --fundo: #F4F6F9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: var(--texto); background: var(--fundo); line-height: 1.6; }
+  a { color: var(--azul); }
+
+  .badge-demo { position: fixed; top: 14px; left: -46px; z-index: 999; background: #C8420D; color: #fff;
+    font-size: 12px; font-weight: 700; letter-spacing: .12em; padding: 6px 52px; transform: rotate(-35deg); box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+
+  .topbar { background: var(--azul-escuro); color: #cfe0f5; font-size: 13px; padding: 6px 0; }
+  .topbar .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .topbar a { color: #cfe0f5; text-decoration: none; margin-left: 16px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header.principal { background: #fff; padding: 18px 0; border-bottom: 4px solid var(--azul); }
+  header.principal .wrap { display: flex; align-items: center; gap: 16px; }
+  .brasao { width: 58px; height: 66px; flex: none; }
+  header.principal h1 { font-size: 21px; line-height: 1.2; color: var(--azul-escuro); }
+  header.principal p { font-size: 13.5px; color: var(--cinza); }
+
+  nav { background: var(--azul); }
+  nav .wrap { display: flex; flex-wrap: wrap; }
+  nav a { color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 13px 18px; }
+  nav a:hover { background: var(--azul-escuro); }
+
+  .hero { background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%); color: #fff; padding: 52px 0 58px; }
+  .hero h2 { font-size: clamp(26px, 4vw, 38px); line-height: 1.2; max-width: 640px; }
+  .hero p { margin-top: 12px; font-size: 17px; opacity: .93; max-width: 560px; }
+  .hero .dica { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 10px 18px; font-size: 15px; }
+  .hero .dica .seta { font-size: 18px; }
+
+  section.servicos { padding: 44px 0 10px; }
+  h3.secao { font-size: 22px; color: var(--azul-escuro); margin-bottom: 18px; border-left: 5px solid var(--azul); padding-left: 12px; }
+  .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px 18px; text-decoration: none; color: var(--texto);
+    box-shadow: 0 1px 3px rgba(0,0,0,.08); border-top: 3px solid var(--azul); transition: transform .12s ease, box-shadow .12s ease; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+  .card .ico { font-size: 26px; }
+  .card h4 { font-size: 16px; margin: 8px 0 4px; color: var(--azul-escuro); }
+  .card p { font-size: 13.5px; color: var(--cinza); }
+
+  section.noticias { padding: 34px 0 50px; }
+  .lista-noticias { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .noticia { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .noticia time { font-size: 12.5px; color: var(--cinza); text-transform: uppercase; letter-spacing: .06em; }
+  .noticia h4 { font-size: 16px; margin-top: 6px; color: var(--azul-escuro); }
+
+  footer { background: var(--azul-escuro); color: #cfe0f5; padding: 32px 0; font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="badge-demo">DEMO</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Prefeitura Municipal de Restinga — Estado de São Paulo</span>
+    <span>
+      <a href="#">Transparência</a>
+      <a href="#">Diário Oficial</a>
+      <a href="#">Contato</a>
+    </span>
+  </div>
+</div>
+
+<header class="principal">
+  <div class="wrap">
+    <svg class="brasao" viewBox="0 0 58 66" aria-hidden="true">
+      <path d="M29 2 54 10v22c0 16-11 26-25 30C15 58 4 48 4 32V10z" fill="#1B4B91"/>
+      <path d="M29 8 48 14v17c0 12-8.5 20-19 23.5C18.5 51 10 43 10 31V14z" fill="#fff"/>
+      <path d="M29 14 42 18v12c0 8-5.5 13.5-13 16-7.5-2.5-13-8-13-16V18z" fill="#2D6BC4"/>
+      <circle cx="29" cy="27" r="6" fill="#F5C542"/>
+    </svg>
+    <div>
+      <h1>Prefeitura Municipal de Restinga</h1>
+      <p>Estado de São Paulo</p>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#">Início</a>
+    <a href="#">A Cidade</a>
+    <a href="#">Serviços</a>
+    <a href="#">Notícias</a>
+    <a href="#">Transparência</a>
+    <a href="#">Contato</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <h2>Os serviços da Prefeitura ao alcance de todos</h2>
+    <p>Tire dúvidas, encontre documentos e acesse os serviços do município de forma simples e rápida.</p>
+    <span class="dica">Experimente o novo assistente virtual no canto da tela <span class="seta">↘</span></span>
+  </div>
+</section>
+
+<section class="servicos">
+  <div class="wrap">
+    <h3 class="secao">Serviços mais acessados</h3>
+    <div class="grade">
+      <a class="card" href="#"><span class="ico">🧾</span><h4>2ª Via de Tributos</h4><p>Emita a segunda via do IPTU e outros tributos municipais.</p></a>
+      <a class="card" href="#"><span class="ico">📄</span><h4>Nota Fiscal Eletrônica</h4><p>Emissão de NFS-e para prestadores de serviço.</p></a>
+      <a class="card" href="#"><span class="ico">📰</span><h4>Diário Oficial</h4><p>Consulte as publicações oficiais do município.</p></a>
+      <a class="card" href="#"><span class="ico">🔍</span><h4>Portal da Transparência</h4><p>Licitações, contratos e contas públicas.</p></a>
+      <a class="card" href="#"><span class="ico">💼</span><h4>Holerite Online</h4><p>Acesso ao demonstrativo de pagamento do servidor.</p></a>
+      <a class="card" href="#"><span class="ico">📢</span><h4>Ouvidoria Municipal</h4><p>Registre solicitações, sugestões e reclamações.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="noticias">
+  <div class="wrap">
+    <h3 class="secao">Últimas notícias</h3>
+    <div class="lista-noticias">
+      <article class="noticia"><time>Conteúdo ilustrativo</time><h4>Campanha de vacinação segue nas unidades de saúde do município</h4></article>
+      <article class="noticia"><time>Conteúdo ilustrativo</time><h4>Prefeitura divulga calendário de atendimento dos departamentos</h4></article>
+      <article class="noticia"><time>Conteúdo ilustrativo</time><h4>Inscrições abertas para atividades culturais e esportivas</h4></article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>Prefeitura Municipal de Restinga</strong><br/>
+      Rua Geraldo Veríssimo, 633 — Centro<br/>
+      Restinga/SP
+    </div>
+    <div>
+      <strong>Atendimento</strong><br/>
+      Segunda a sexta, das 08h às 17h<br/>
+      (16) 99205-2002
+    </div>
+  </div>
+</footer>
+
+<!-- ===== O PRODUTO: uma linha de script ===== -->
+<script src="./govtech-widget.js"
+  data-webhook="https://webhook.connectcreativelab.com.br/webhook/govtech-chat"
+  data-cor="#1B4B91"
+  data-titulo="Atendimento ao Cidadão"
+  data-subtitulo="Prefeitura de Restinga/SP"
+  data-telefone="(16) 99205-2002"
+  data-horario="Seg. a sex., 08h às 17h"></script>
+
+</body>
+</html>
