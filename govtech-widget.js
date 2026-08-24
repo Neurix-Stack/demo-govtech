@@ -142,13 +142,28 @@
   }
   function md(s) {
     var h = esc(s);
-    // [texto](url)
-    h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-    // URLs soltas (fora de href já criado)
-    h = h.replace(/(^|[^"=\]])(https?:\/\/[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
-    // **negrito**
+    var guardados = [];
+    // 1) links markdown viram placeholder (protege de reprocessamento)
+    h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_, txt, url) {
+      guardados.push('<a href="' + limpaUrl(url) + '" target="_blank" rel="noopener noreferrer">' + txt + '</a>');
+      return '\u0000' + (guardados.length - 1) + '\u0000';
+    });
+    // 2) URLs soltas viram placeholder
+    h = h.replace(/https?:\/\/[^\s<]+/g, function (url) {
+      var u = limpaUrl(url);
+      guardados.push('<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + u + '</a>');
+      return '\u0000' + (guardados.length - 1) + '\u0000';
+    });
+    // 3) formatacao de texto (ja sem URLs no caminho)
     h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    return h.replace(/\n/g, '<br/>');
+    h = h.replace(/\n/g, '<br/>');
+    // 4) restaura os links
+    return h.replace(/\u0000(\d+)\u0000/g, function (_, i) { return guardados[i]; });
+  }
+
+  // remove pontuacao/caracteres invisiveis grudados no fim da URL
+  function limpaUrl(u) {
+    return String(u).replace(/[\u200B-\u200D\uFEFF\uFFFC]/g, '').replace(/[.,;:!?)\]}'"\u00bb]+$/, '');
   }
 
   function addMsg(role, texto) {
